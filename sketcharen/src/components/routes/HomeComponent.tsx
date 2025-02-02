@@ -1,8 +1,20 @@
 "use client"
 import React, { useState } from "react";
+import { CreateRoom } from "@/utils/createroom";
+import { JoinRoom } from "@/utils/joinroom";
+import { useRouter } from "next/navigation";
 
 function HomeComponent() {
   const [name, setName] = useState("");
+  const router = useRouter()
+  const handleCreateRoom = () =>{
+    CreateRoom(router);
+  }
+  
+  const handleJoinRoom = () =>{
+    JoinRoom()
+  }
+
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white p-6">
@@ -19,10 +31,10 @@ function HomeComponent() {
       />
 
       <div className="flex gap-4">
-        <button className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-lg font-semibold transition">
+        <button onClick={handleCreateRoom} className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-lg font-semibold transition">
           Host Game
         </button>
-        <button className="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg text-lg font-semibold transition">
+        <button onClick={handleJoinRoom} className="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg text-lg font-semibold transition">
           Join Game
         </button>
       </div>
